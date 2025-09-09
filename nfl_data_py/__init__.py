@@ -279,7 +279,7 @@ def import_weekly_data(
     if not columns:
         columns = []
 
-    url = r'https://github.com/nflverse/nflverse-data/releases/download/player_stats/player_stats_{0}.parquet'
+    url = r'https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_{0}.parquet'
 
     if thread_requests:
         with ThreadPoolExecutor() as executor:
@@ -335,7 +335,7 @@ def import_seasonal_data(years, s_type='REG'):
         raise ValueError('Only REG, ALL, POST allowed for s_type.')
     
     # import weekly data
-    url = r'https://github.com/nflverse/nflverse-data/releases/download/player_stats/player_stats_{0}.parquet'
+    url = r'https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_{0}.parquet'
     data = pandas.concat([pandas.read_parquet(url.format(x), engine='auto') for x in years])
     
     # filter to appropriate season_type
@@ -406,7 +406,7 @@ def see_weekly_cols():
     """
     
     # load weekly file, identify columns
-    data = pandas.read_parquet(r'https://github.com/nflverse/nflverse-data/releases/download/player_stats/player_stats_2020.parquet', engine='auto')
+    data = pandas.read_parquet(r'https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2020.parquet', engine='auto')
     cols = data.columns
 
     return cols
